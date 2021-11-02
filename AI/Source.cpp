@@ -7,6 +7,8 @@
 #include <winuser.h>
 #include <locale>
 #include <algorithm>
+#include <fileapi.h>
+//#include <SDL.h>
 using namespace std;
 void  toUpperCase(string& my_word)
 {
@@ -17,7 +19,7 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	string my_word, my_name, Ai_name;
-	//LPCSTR filename;
+	LPCSTR filename;
 	ifstream Ai_name_save, my_name_save;
 	int pos_Please, pos_Thanks;
 	try {
@@ -73,13 +75,14 @@ int main() {
 				my_word.erase(pos_Thanks, 8);
 			}
 			if (my_word == "我市紊 娜咽 D") {
-				/*filename = "D:";
-				DWORD GetFullPathNameW(
+				filename = "D:";
+				DWORD GetFullPathNameA(
 					LPCSTR filename,
 					DWORD path,
 					LPSTR lpBuffer,
 					LPSTR lpFilePart
-				);*/
+				);
+				//cout << GetFullPathNameA;
 				ShellExecuteA(NULL, "open", "d:", NULL, NULL, SW_RESTORE);
 			}
 			else if (my_word == "我市紊 娜咽 E") {
