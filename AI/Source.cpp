@@ -12,7 +12,7 @@
 using namespace std;
 void  toUpperCase(string& my_word)
 {
-	transform(my_word.begin(), my_word.end(), my_word.begin(), ::toupper);
+	transform(my_word.begin(), my_word.end(), my_word.begin(), ::toupper);//как-то работает с русским языком, но как именно я хз
 }
 int main() {
 	setlocale(LC_ALL, "RUS");
@@ -20,6 +20,7 @@ int main() {
 	SetConsoleOutputCP(1251);
 	string my_word, my_name, Ai_name;
 	LPCSTR filename;
+	LPSTR path{};
 	ifstream Ai_name_save, my_name_save;
 	int pos_Please, pos_Thanks;
 	try {
@@ -76,13 +77,8 @@ int main() {
 			}
 			if (my_word == "ОТКРОЙ ДИСК D") {
 				filename = "D:";
-				DWORD GetFullPathNameA(
-					LPCSTR filename,
-					DWORD path,
-					LPSTR lpBuffer,
-					LPSTR lpFilePart
-				);
-				//cout << GetFullPathNameA;
+				//GetFullPathNameA(filename, MAX_PATH, path, nullptr);
+				//cout << path;
 				ShellExecuteA(NULL, "open", "d:", NULL, NULL, SW_RESTORE);
 			}
 			else if (my_word == "ОТКРОЙ ДИСК E") {
@@ -105,8 +101,11 @@ int main() {
 			}
 			else if (my_word == "СОЗДАЙ ФАЙЛ В ФОТОШОПЕ") {
 				ShellExecuteA(NULL, "open", "new file photo.ahk", NULL, NULL, SW_RESTORE);
-			}
-			else if (my_word == "ЗАКРОЙ ФОТОШОП") {
+			}else if (my_word == "ОТКРОЙ И СОЗДАЙ ФАЙЛ В ФОТОШОПЕ") {
+				ShellExecuteA(NULL, "open", "d:\\program\\Adobe Photoshop 2020\\photoshop.exe ", NULL, NULL, SW_RESTORE);
+				Sleep(20000);
+				ShellExecuteA(NULL, "open", "new file photo.ahk", NULL, NULL, SW_RESTORE);
+			}else if (my_word == "ЗАКРОЙ ФОТОШОП") {
 				system("TASKKILL /F /IM photoshop.exe 1>NULL");
 			}
 			else if (my_word == "ОТКРОЙ БРАУЗЕР") {
@@ -124,7 +123,7 @@ int main() {
 			}
 		}
 	}
-	catch(int main){
+	catch(string filename){
 		int msgboxID = MessageBox(
         NULL,
         (LPCWSTR)L"Ля!\n Ошибка.\n Ну, бывает.\n 1-ое. Либо обновление\n 2-ое. Создатель немного затупил, и все исправит\n",
