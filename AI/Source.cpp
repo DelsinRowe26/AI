@@ -1,3 +1,20 @@
+/// <summary>
+/// \code
+/// Метод: toUpperCase(string& my_word)
+/// Цель: перевести текст из нижнего регистра в верхний
+/// Исходные данные:
+///		<param name="my_word">мои слова</param>
+/// Результат: текст в верхнем регистре
+/// Вызываемые модули: нет
+/// Описание алгоритма:
+///		Перевод текста в верхний регистр
+/// Дата: 20.01.2023 Версия: 1.0.0.1
+/// Автор: Гритчин И.В.
+/// Испрравления: нет
+/// \endcode
+/// </summary>
+/// <param name="my_word"></param>
+
 #include <iostream>
 #include <string>
 #include <Windows.h>
@@ -10,14 +27,32 @@
 #include <fileapi.h>
 //#include <SDL.h>
 using namespace std;
+////////
+/// **Version 1.0.0.1**
+////////
+/**
+* \brief метод toUpperCase(string& my_word)
+*/
+
+
 void  toUpperCase(string& my_word)
 {
+	//!элемент трансформирующий текст из нижнего регистра в верхний
 	transform(my_word.begin(), my_word.end(), my_word.begin(), ::toupper);//как-то работает с русским языком, но как именно я хз
 }
 int main() {
+	//!элемент подключающий русский язык
 	setlocale(LC_ALL, "RUS");
+	//!элемент подключающий ввод русского языка
 	SetConsoleCP(1251);
+	//!элемент подключающий вывода русского языка
 	SetConsoleOutputCP(1251);
+
+	/**
+	* \brief operator
+	* \param my_word, my_name, Ai_name
+	* \param pos_Please, pos_Thanks
+	*/
 	string my_word, my_name, Ai_name;
 	LPCSTR filename;
 	LPSTR path{};
