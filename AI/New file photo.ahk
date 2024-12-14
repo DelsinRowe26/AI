@@ -1,4 +1,6 @@
-Focus 2
+Click 1300, 500
 Click 68, 24
-Click 86,47
-Click 768, 63
+Sleep 5
+Click 86, 47
+Sleep 10
+Click 979, 225

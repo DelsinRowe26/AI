@@ -1,3 +1,20 @@
+/// <summary>
+/// \code
+/// Метод: toUpperCase(string& my_word)
+/// Цель: перевести текст из нижнего регистра в верхний
+/// Исходные данные:
+///		<param name="my_word">мои слова</param>
+/// Результат: текст в верхнем регистре
+/// Вызываемые модули: нет
+/// Описание алгоритма:
+///		Перевод текста в верхний регистр
+/// Дата: 20.01.2023 Версия: 1.0.0.1
+/// Автор: Гритчин И.В.
+/// Испрравления: нет
+/// \endcode
+/// </summary>
+/// <param name="my_word"></param>
+
 #include <iostream>
 #include <string>
 #include <Windows.h>
@@ -10,16 +27,35 @@
 #include <fileapi.h>
 //#include <SDL.h>
 using namespace std;
+////////
+/// **Version 1.0.0.1**
+////////
+/**
+* \brief метод toUpperCase(string& my_word)
+*/
+
+
 void  toUpperCase(string& my_word)
 {
-	transform(my_word.begin(), my_word.end(), my_word.begin(), ::toupper);
+	//!элемент трансформирующий текст из нижнего регистра в верхний
+	transform(my_word.begin(), my_word.end(), my_word.begin(), ::toupper);//как-то работает с русским языком, но как именно я хз
 }
 int main() {
+	//!элемент подключающий русский язык
 	setlocale(LC_ALL, "RUS");
+	//!элемент подключающий ввод русского языка
 	SetConsoleCP(1251);
+	//!элемент подключающий вывода русского языка
 	SetConsoleOutputCP(1251);
+
+	/**
+	* \brief operator
+	* \param my_word, my_name, Ai_name
+	* \param pos_Please, pos_Thanks
+	*/
 	string my_word, my_name, Ai_name;
 	LPCSTR filename;
+	LPSTR path{};
 	ifstream Ai_name_save, my_name_save;
 	int pos_Please, pos_Thanks;
 	try {
@@ -76,13 +112,8 @@ int main() {
 			}
 			if (my_word == "ОТКРОЙ ДИСК D") {
 				filename = "D:";
-				DWORD GetFullPathNameA(
-					LPCSTR filename,
-					DWORD path,
-					LPSTR lpBuffer,
-					LPSTR lpFilePart
-				);
-				//cout << GetFullPathNameA;
+				//GetFullPathNameA(filename, MAX_PATH, path, nullptr);
+				//cout << path;
 				ShellExecuteA(NULL, "open", "d:", NULL, NULL, SW_RESTORE);
 			}
 			else if (my_word == "ОТКРОЙ ДИСК E") {
@@ -105,8 +136,11 @@ int main() {
 			}
 			else if (my_word == "СОЗДАЙ ФАЙЛ В ФОТОШОПЕ") {
 				ShellExecuteA(NULL, "open", "new file photo.ahk", NULL, NULL, SW_RESTORE);
-			}
-			else if (my_word == "ЗАКРОЙ ФОТОШОП") {
+			}else if (my_word == "ОТКРОЙ И СОЗДАЙ ФАЙЛ В ФОТОШОПЕ") {
+				ShellExecuteA(NULL, "open", "d:\\program\\Adobe Photoshop 2020\\photoshop.exe ", NULL, NULL, SW_RESTORE);
+				Sleep(20000);
+				ShellExecuteA(NULL, "open", "new file photo.ahk", NULL, NULL, SW_RESTORE);
+			}else if (my_word == "ЗАКРОЙ ФОТОШОП") {
 				system("TASKKILL /F /IM photoshop.exe 1>NULL");
 			}
 			else if (my_word == "ОТКРОЙ БРАУЗЕР") {
@@ -124,7 +158,7 @@ int main() {
 			}
 		}
 	}
-	catch(int main){
+	catch(string filename){
 		int msgboxID = MessageBox(
         NULL,
         (LPCWSTR)L"Ля!\n Ошибка.\n Ну, бывает.\n 1-ое. Либо обновление\n 2-ое. Создатель немного затупил, и все исправит\n",
